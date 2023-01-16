@@ -3,15 +3,34 @@ from fastapi import FastAPI, Response, status, HTTPException
 from fastapi.params import Body
 from pydantic import BaseModel
 from random import randrange
+import psycopg2
+from psycopg2.extras import RealDictCursor
+import maskpass
+import time
 
 app = FastAPI()
+
+pwd = maskpass.askpass(prompt="Password:", mask="*")
 
 # any pydantic model can be converted into a dictionary
 class Post(BaseModel):
     title: str
     content: str
     published: bool = True
-    rating: Optional[int] = None
+
+
+while True:
+
+    try:
+        conn = psycopg2.connect(host = 'localhost', database = 'fastapi', user = 'postgres',
+        password = pwd, cursor_factory=RealDictCursor)
+        cursor = conn.cursor()
+        print("Database connection was successful!")
+        break
+    except Exception as error:
+        print("Connecting to database failed")
+        print("Error: ", error)
+        time.sleep(2)
 
 # Hard-coded as each time program restarts we'd lose the data
 my_posts = [{"title": "title of post 1", "content": "content of post 1", "id": 1},
@@ -104,4 +123,4 @@ def update_post(id: int, post: Post):
 
 
 
-### 1:47:58 on video
+### 4:08:00 on video
