@@ -1,0 +1,24 @@
+pydantic vs orm
+
+PYDANTIC MODELS
+In main.py we have Class Post that extends BaseModel which comes from the pydantic library. This is our schema.
+    This is referenced in our path operations, reference POST saved to a variable post
+        def create_post(post: POST)
+In models.py we have our  sqlalchemy model. whihc defines what's in our database, what our specific table looks like. 
+    Class Post(Base)     Base from .database import Base
+
+Schema/Pydantic models: Define the structure of a request & Response
+    When a user wants to create a pos tthe request will only go through if it has a 'title' and 'content' in the body.#
+    When it comes to creating a post we can define exactly what the request looks like. (User required fields)
+
+        Google Chrome -> [Request] -> Schem/Pydantic Model -> Fast API
+
+        FastAPI -> [Response] -> Schema/Pydantic Model -> Google Chrome
+
+    Pydantic model provides validation, e.g. title cannot be an integer.  All data fields in request match ip to what we want.
+
+
+
+SQLALCHEMY MODELS
+Responsible for definin the colimns of our 'posts' table within postgres
+Is used to query, createm delete and update entries within database 

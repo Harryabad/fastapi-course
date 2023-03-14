@@ -17,6 +17,8 @@ SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 Base = declarative_base()
 
+
+## for every request to api database it opens a request and opens when done
 def get_db():
     db = SessionLocal()
     try:
