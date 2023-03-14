@@ -1,24 +1,15 @@
-pydantic vs orm
+Pydantic vs ORM:
 
-PYDANTIC MODELS
-In main.py we have Class Post that extends BaseModel which comes from the pydantic library. This is our schema.
-    This is referenced in our path operations, reference POST saved to a variable post
-        def create_post(post: POST)
-In models.py we have our  sqlalchemy model. whihc defines what's in our database, what our specific table looks like. 
-    Class Post(Base)     Base from .database import Base
+In main.py, the Post class extends BaseModel from the Pydantic library, which serves as our schema. 
+This is used in our path operations, such as the create_post operation, where a variable post of 
+type Post is defined.
 
-Schema/Pydantic models: Define the structure of a request & Response
-    When a user wants to create a pos tthe request will only go through if it has a 'title' and 'content' in the body.#
-    When it comes to creating a post we can define exactly what the request looks like. (User required fields)
+In models.py, we have our SQLAlchemy model, which defines the structure of our database table. 
+For example, the Post class inherits from Base, which is imported from .database.
 
-        Google Chrome -> [Request] -> Schem/Pydantic Model -> Fast API
+Pydantic models define the structure of request and response data. When a user wants to create a
+ post, the request must include a title and content field in the body. Pydantic models provide 
+ validation, ensuring that all data fields in the request match what we expect.
 
-        FastAPI -> [Response] -> Schema/Pydantic Model -> Google Chrome
-
-    Pydantic model provides validation, e.g. title cannot be an integer.  All data fields in request match ip to what we want.
-
-
-
-SQLALCHEMY MODELS
-Responsible for definin the colimns of our 'posts' table within postgres
-Is used to query, createm delete and update entries within database 
+SQLAlchemy models are responsible for defining the columns of our posts table in PostgreSQL. 
+These models are used to query, create, delete, and update entries within the database.
