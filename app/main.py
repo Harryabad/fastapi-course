@@ -11,7 +11,7 @@ import time
 from sqlalchemy.orm import Session # library for handling SQLAlchemy sessions
 from . import models, schemas, utils # custom modules for models, schemas and utilities
 from .database import engine, SessionLocal, pwd, get_db # custom module for setting up database connection and getting a database session
-from .routers import post, user # custom modules for routes
+from .routers import post, user, auth # custom modules for routes
 
 
 # create all database tables defined in models.py
@@ -55,6 +55,7 @@ def find_index_post(id):
 # include the routes defined in the post.py and user.py modules
 app.include_router(post.router)
 app.include_router(user.router)
+app.include_router(auth.router)
 
 # define a root path for the API
 # decorator turns into a path API using a get 'method' request. "/" is the root 'path'
@@ -76,7 +77,7 @@ def root():
 
 
 
-### 6:32:38 on video
+### 7:00:58 on video
 ### venv\Scripts\activate.bat 
 ### uvicorn app.main:app --reload 
 

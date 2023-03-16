@@ -34,3 +34,7 @@ class UserOut(BaseModel):
     # Configure the model to work with SQLAlchemy
     class Config:
         orm_mode = True
+
+class UserLogin(BaseModel):
+    email: EmailStr
+    password: str
