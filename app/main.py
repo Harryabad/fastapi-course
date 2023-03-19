@@ -77,7 +77,7 @@ def root():
 
 
 
-### 7:00:58 on video
+### 7:50:40 on video
 ### venv\Scripts\activate.bat 
 ### uvicorn app.main:app --reload 
 
